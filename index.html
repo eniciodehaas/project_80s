@@ -6,7 +6,7 @@
   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="author" content="Enicio de Haas & Boyd Hoogkamer">
-  <meta name="keywords" content="Amsterdam, retro, 80s, map, kaart"> 
+  <meta name="keywords" content="Amsterdam, retro, 80s, map, kaart">
   <meta name="description" content="Een kaart van Amsterdam met verschillende plekken uit de 80s.">
   <title>Document</title>
   <style>
@@ -19,17 +19,112 @@
       height: 100vh;
       width: 100%;
     }
+
+    #tiltKnop {
+      box-shadow: 0em 0 0.4em 0 rgba(15, 22, 33, 0.6);
+      border-radius: 5px;
+      width: 40px;
+      height: 40px;
+      background: #fff;
+      top: 80px;
+      left: 24px;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    .svg {
+      height: 30px;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+
+    #tiltKnop:hover .svg path {
+      fill: black;
+    }
+
+    .H_ib_body {
+      background-color: white !important;
+      width: 430px;
+    }
+
+    h1 {
+      color: black;
+      margin-bottom: 1em;
+    }
+
+    b {
+      color: black;
+    }
+
+    img {
+      width: 400px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-top: 1em;
+    }
+
+
+
+    
   </style>
   <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
   <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
   <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
   <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-clustering.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
 
 </head>
 
 <body>
   <div id="mapContainer"></div>
+
+  <div id="tiltKnop">
+    <svg class="svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 424.069 424.069" style="enable-background:new 0 0 424.069 424.069;" xml:space="preserve" fill="grey">
+<g>
+	<path d="M72.366,225.953c1.002,0,1.955-0.429,2.619-1.178c1.926-2.173,47.171-53.506,47.171-80.094
+		c0-27.454-22.336-49.79-49.79-49.79s-49.79,22.336-49.79,49.79c0,26.588,45.245,77.921,47.171,80.094
+		C70.411,225.525,71.364,225.953,72.366,225.953z M43.866,142.778c0-15.715,12.785-28.501,28.5-28.501
+		c15.715,0,28.5,12.786,28.5,28.501c0,15.715-12.785,28.5-28.5,28.5C56.651,171.278,43.866,158.492,43.866,142.778z"/>
+	<path d="M74.303,155.508l12-16.676c0.523-0.727,0.595-1.686,0.187-2.482c-0.408-0.797-1.229-1.298-2.124-1.298h-24
+		c-0.896,0-1.716,0.501-2.124,1.298c-0.408,0.797-0.336,1.755,0.187,2.482l12,16.676c0.448,0.623,1.17,0.993,1.937,0.993
+		C73.133,156.501,73.855,156.132,74.303,155.508z"/>
+	<path d="M338.819,218.331c0.77,0,1.503-0.33,2.014-0.906c1.481-1.67,36.271-41.142,36.271-61.586
+		c0-21.11-17.175-38.285-38.285-38.285c-21.11,0-38.285,17.175-38.285,38.285c0,20.444,34.79,59.916,36.271,61.586
+		C337.316,218.001,338.049,218.331,338.819,218.331z M316.904,154.374c0-12.084,9.831-21.915,21.915-21.915
+		s21.914,9.831,21.914,21.915c0,12.084-9.831,21.915-21.914,21.915S316.904,166.458,316.904,154.374z"/>
+	<path d="M424.068,216.409c0.016-1.422-0.83-2.712-2.14-3.265l-49.412-20.846c-1.242,1.919-2.575,3.896-3.98,5.918l5.698,2.404
+		l-10.356,4.096c-3.04,4.107-5.948,7.808-8.422,10.859l27.988-11.07l27.871,11.759l-37.192,14.711l-23.291-9.826
+		c-1.333,1.566-2.239,2.595-2.517,2.909c-0.845,0.953-1.826,1.755-2.893,2.405l19.407,8.188l-34.981,13.836l-27.872-11.759
+		l28.72-11.359c-0.484-0.404-0.951-0.832-1.374-1.31c-0.351-0.395-1.686-1.913-3.639-4.236l-32.917,13.02l-29.824-12.583
+		l34.981-13.835l25.603,10.801c-2.512-3.056-5.615-6.949-8.912-11.356l-7.397-3.121l3.965-1.568
+		c-0.416-0.581-0.832-1.163-1.249-1.755c-0.993-1.412-1.933-2.79-2.848-4.152l-9.077,3.59l-29.825-12.583l27.482-10.87
+		c-1.028-2.256-1.901-4.42-2.618-6.493l-34.074,13.478l-29.825-12.583l37.193-14.71l25.78,10.876
+		c-0.838-2.935-1.353-5.683-1.52-8.238l-22.82-9.628c-0.004-0.001-0.008-0.003-0.013-0.005l-37.105-15.654
+		c-0.844-0.357-1.795-0.367-2.648-0.03l-104.63,41.383c-1.571,3.081-3.343,6.288-5.344,9.641l20.458-8.091l27.872,11.759
+		l-34.98,13.835l-19.272-8.131c-1.278,1.929-2.611,3.893-4.015,5.903l13.994,5.903l-25.984,10.278
+		c-3.506,4.478-6.644,8.295-9.035,11.139l29.78,12.563l-37.191,14.71l-29.827-12.584l16.162-6.392
+		c-1.394-0.746-2.668-1.724-3.739-2.931c-0.267-0.301-0.974-1.104-2.021-2.319l-19.612,7.757l-27.873-11.76l33.486-13.244
+		c-1.42-1.851-2.883-3.789-4.368-5.8L2.22,221.728c-1.322,0.523-2.197,1.794-2.213,3.215c-0.016,1.422,0,22.404,0,22.404
+		l193.405,81.555c0.435,0.184,0.898,0.275,1.36,0.275c0.437,0,0.874-0.082,1.287-0.245l228.009-91.398
+		C424.068,237.534,424.052,217.83,424.068,216.409z M283.473,236.519l-34.979,13.835l-29.823-12.582l34.979-13.835L283.473,236.519z
+		 M200.167,237.562l-34.981,13.836l-29.824-12.582l34.98-13.836L200.167,237.562z M179.636,221.303l34.979-13.835l29.824,12.583
+		l-34.979,13.835L179.636,221.303z M209.377,241.447l29.823,12.582l-34.981,13.836l-29.823-12.582L209.377,241.447z
+		 M288.715,202.539l-34.981,13.835l-29.824-12.582l34.98-13.836L288.715,202.539z M249.68,186.07l-34.98,13.836l-29.825-12.583
+		l34.98-13.835L249.68,186.07z M229.262,139.458l27.871,11.758l-37.192,14.71l-27.871-11.758L229.262,139.458z M147.795,171.679
+		l34.98-13.835l27.871,11.759l-34.98,13.835L147.795,171.679z M175.582,190.999l29.825,12.583l-34.979,13.836l-29.826-12.583
+		L175.582,190.999z M96.327,222.346l34.98-13.835l29.826,12.583l-34.98,13.836L96.327,222.346z M88.878,257.201l37.191-14.71
+		l29.824,12.582l-37.191,14.711L88.878,257.201z M127.91,273.669l37.191-14.71l29.823,12.582l-37.192,14.71L127.91,273.669z
+		 M194.815,301.897l-27.874-11.76l37.192-14.71l27.873,11.76L194.815,301.897z M241.3,283.511l-27.872-11.76l34.981-13.836
+		l27.873,11.759L241.3,283.511z M285.576,265.998l-27.872-11.759l34.979-13.835l27.872,11.759L285.576,265.998z"/>
+	<path d="M340.309,164.164l9.227-12.822c0.402-0.559,0.458-1.296,0.144-1.909c-0.314-0.613-0.945-0.998-1.633-0.998h-18.454
+		c-0.688,0-1.319,0.385-1.633,0.998c-0.314,0.613-0.258,1.35,0.144,1.909l9.227,12.822c0.345,0.479,0.899,0.763,1.49,0.763
+		C339.409,164.927,339.963,164.643,340.309,164.164z"/>
+</g>
+</svg>
+  </div>
 
   <script>
     var platform = new H.service.Platform({
@@ -49,6 +144,25 @@
           lng: 4.895168
         }
       });
+
+    var isTilt = false;
+    tiltKnop = document.getElementById('tiltKnop');
+    tiltKnop.addEventListener("click", function(){
+      if(isTilt == false){
+      // adjust tilt and rotation of the map
+    map.getViewModel().setLookAtData({
+      tilt: 45
+    });
+    isTilt = true;
+    } else {
+      map.getViewModel().setLookAtData({
+      tilt: 0
+    });
+    isTilt = false;
+    }
+    });
+
+
 
 
     // Enable the event system on the map instance:
@@ -71,18 +185,130 @@
     scalebar.setAlignment('top-left');
 
 
-
     // MARKERS
-    // Create a marker icon from an image URL:
-    var icon = new H.map.Icon('img/logo_vaporwear.png');
+    // Define a variable holding SVG mark-up that defines an icon image:
+    var svgMarkup =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="35pt" height="35pt" viewBox="0 0 50 50"><g id="surface1"><path style=" stroke:none;fill-rule:nonzero;fill:rgb(90.588235%,29.803922%,23.529412%);fill-opacity:1;" d="M 25 0 C 15.796875 0 8.332031 7.460938 8.332031 16.667969 C 8.332031 19.628906 9.128906 22.394531 10.480469 24.804688 C 10.707031 25.203125 10.941406 25.597656 11.199219 25.976562 L 25 50 L 38.800781 25.976562 C 39.015625 25.664062 39.199219 25.328125 39.386719 25 L 39.519531 24.804688 C 40.871094 22.394531 41.667969 19.628906 41.667969 16.667969 C 41.667969 7.460938 34.203125 0 25 0 Z M 25 8.332031 C 29.601562 8.332031 33.332031 12.0625 33.332031 16.667969 C 33.332031 21.269531 29.601562 25 25 25 C 20.398438 25 16.667969 21.269531 16.667969 16.667969 C 16.667969 12.0625 20.398438 8.332031 25 8.332031 Z M 25 8.332031 "/><path style=" stroke:none;fill-rule:nonzero;fill:rgb(75.294118%,22.352941%,16.862745%);fill-opacity:1;" d="M 25 6.25 C 19.246094 6.25 14.582031 10.914062 14.582031 16.667969 C 14.582031 22.417969 19.246094 27.082031 25 27.082031 C 30.753906 27.082031 35.417969 22.417969 35.417969 16.667969 C 35.417969 10.914062 30.753906 6.25 25 6.25 Z M 25 10.417969 C 28.453125 10.417969 31.25 13.214844 31.25 16.667969 C 31.25 20.117188 28.453125 22.917969 25 22.917969 C 21.546875 22.917969 18.75 20.117188 18.75 16.667969 C 18.75 13.214844 21.546875 10.417969 25 10.417969 Z M 25 10.417969 "/></g></svg>';
 
-    // Create a marker using the previously instantiated icon:
-    var marker = new H.map.Marker({ lat: 52.5, lng: 4.9 }, { icon: icon });
+    // Create an icon, an object holding the latitude and longitude, and a marker:
+    var icon = new H.map.Icon(svgMarkup),
+      center = {
+        lat: 52.370216,
+        lng: 4.895168
+      };
+/////////////////////////////////////////////////////////////////
+lauradolls = new H.map.Marker({lat: 52.370310, lng: 4.886141}, {
+        icon: icon
+      });
 
-    // Add the marker to the map:
-    map.addObject(marker);
+      var lauradollsb = new H.ui.InfoBubble({ lat: 52.370310, lng: 4.886141 }, {
+        content: '<h1>Lauradols</h1><b>Met een vintage inventaris die twee winkels in hetzelfde blok rechtvaardigt, is Laura Dols een tweedehands nietje in Amsterdam. Op de grotere locatie (Wolvenstraat 7) vind je rekken met kleding van vijf decennia (redelijk goed georganiseerd door kleur) en unieke accessoires zoals brede riemen met emaille gesp en kralenzakken. De achterkamer en kelder, vol feestjurken perfect voor alles, van cocktails tot een play-it-again prom, zullen zeker elke vintage hond behagen. Aan de overkant van de straat in Wolvenstraat 6 zijn jassen in overvloed en een verzameling vintage geborduurde theedoeken, kussenslopen, tafelkleden en Europees boerenlinnen.Wolvenstraat 6 & 7,  Negen Straatjes. Check hier de website! <br> <a target="blank" href="http://lauradols.nl/">http://lauradols.nl/</a><img alt="Laura Dols" src="img/lauradols.jpg"/></b>'
+        });
+/////////////////////////////////////////////////////////////////
+      spiegelbeeld = new H.map.Marker({lat: 52.368937, lng: 4.885373}, {
+        icon: icon
+      });
+
+      var spiegelbeeldb = new H.ui.InfoBubble({ lat: 52.368937, lng: 4.885373 }, {
+        content: '<b><h1>Spiegelbeeld</h1>Spiegelbeeld (Nederlands voor "spiegelbeeld") is de plek om te zoeken naar tweedehands en vintage designerlabels zoals Manolo Blahnik, Burberry, Dolce & Gabbana en Calvin Klein. Je vindt er ook populaire regionale namen zoals Dries van Noten en Laundry Industry. De eigenaar van deze kleine maar hoogwaardige winkel is er bijna altijd om een ​​handje te helpen en haar eerlijke mening te geven. Huidenstraat 24,  Negen Straatjes  ("Negen Straatjes") gebied<img alt="Spiegelbeeld" src="img/spiegelbeeld.jpg"/></b>'
+       });
+/////////////////////////////////////////////////////////////////
+      winivintage = new H.map.Marker({lat: 52.379546, lng: 4.893512}, {
+        icon: icon
+      });
+
+      var winivintageb = new H.ui.InfoBubble({ lat: 52.379546, lng: 4.893512 }, {
+        content: '<b><h1>Winivintage</h1>Nog een vondst in de met boetiek beklede Haarlemmerstraat, Wini heeft een strak, opgeruimd interieur waar het zijn goed samengestelde collectie van geschaafde kleding toont. Er is ook een klein herengedeelte en een kindergedeelte, zodat het hele gezin mee kan doen. Elke maandag organiseert Wini zijn maandagmarktuitverkoop, waar het afgeprijsde kleding in stapels op tafels aanbiedt - een ongeorganiseerde opstelling om te zijn zeker, maar shoppers kunnen enkele van de beste vintage deals in de stad vinden die zich onder aan een stapel verbergen. Begin met schieten! Haarlemmerstraat 29. Check hier de site! <a target="blank" href="http://winivintage.nl/">http://winivintage.nl/</a><img alt="Winivintage" src="img/wini.jpg"/></b>'
+       });
+/////////////////////////////////////////////////////////////////
+      episode = new H.map.Marker({lat: 52.370305, lng: 4.884331}, {
+        icon: icon
+      });
+
+      var episodeb = new H.ui.InfoBubble({ lat: 52.370305, lng: 4.884331 }, {
+        content: '<b><h1>Episode</h1>Met vestigingen in Amsterdam, Antwerpen, Brussel, Londen en Rotterdam kleedt Episode menigten van een overwegend jonge clientèle in kringloopwinkels. De twee locaties in Amsterdam hebben zowel heren- als dameskleding met een sterke focus op de jaren zeventig en tachtig, maar ook Halloween en gekke kleding en nieuwe accessoires. De locatie Berenstraat voelt iets chiquer aan. Hun verzameling oude Levis en jassen in militaire stijl is moeilijk te verslaan. Check hier de website! <a target="blank" href="https://www.episode.eu/">https://www.episode.eu/</a><img alt="Episode" src="img/episode.jpg"/></b>'
+       });
+/////////////////////////////////////////////////////////////////
+      waterloo = new H.map.Marker({lat: 52.368450, lng: 4.901772}, {
+        icon: icon
+      });
+
+      var waterloob = new H.ui.InfoBubble({ lat: 52.368450, lng: 4.901772 }, {
+        content: '<b><h1>Waterloo</h1>De oudste en meest bekende vlooienmarkt in Amsterdam is de markt Waterlooplein (Waterloo Square). Niet alle rommelmarkten zijn zo modegericht, maar Waterlooplein heeft een reputatie opgebouwd als de plek om zowel vintage mode als meer eigentijdse stijlen met korting te scoren. In tegenstelling tot andere markten houden de kraampjes dezelfde uren als fysieke winkels, zelfs eerder open dan hun concurrenten; de markt loopt zes dagen per week van 9.30 tot 18.00 uur, van maandag tot zaterdag. Zie het als een openluchtwinkelcentrum voor tweedehandsmode - en het multiculturele voedselaanbod is gevarieerder en lekkerder dan elke eetzaal in een winkelcentrum. <img alt="Waterloo" src="img/waterloo.jpg"/></b>'
+       });
+/////////////////////////////////////////////////////////////////
+      ilovevintage = new H.map.Marker({lat: 52.379442, lng: 4.893622}, {
+        icon: icon
+      });
+
+      var ilovevintageb = new H.ui.InfoBubble({ lat: 52.379442, lng: 4.893622 }, {
+        content: '<b><h1>I Love Vintage</h1>Op de grens van de Negen Straten is I Love Vintage snel een van de meest aangeprezen vintage kledingwinkels van de stad geworden. Het begon als een online-alleenverkoper, maar de populariteit sloeg aan als wildvuur; al snel hadden de eigenaars niet slechts één, maar twee boetieks in twee van de hipste winkelstraten in de stad. Hun online aanwezigheid is een duidelijke bonus voor buitenlanders - u kunt virtueel door de collectie van de winkel bladeren en zelfs items reserveren voor ophalen op de Prinsengracht-locatie (items worden vijf werkdagen bewaard; betaling bij afhalen, maar u kan alles passen voordat u beslist). Haarlemmerstraat 25,  Haarlemmerbuurt  area  Prinsengracht 201,  Negen Straatjes  ("Nine Streets") area. Uitgegeven door  Kristen de Joseph. Check hier de site! <a target="blank" href="https://www.ilovevintage.com/">https://www.ilovevintage.com/<a><img alt="I Love Vintage" src="img/ilovevintage.jpg"/></b>'
+       });
+/////////////////////////////////////////////////////////////////
+   
+    map.addObject(lauradolls);
+    map.addObject(spiegelbeeld);
+    map.addObject(winivintage); 
+    map.addObject(episode);
+    map.addObject(waterloo);
+    map.addObject(ilovevintage);
+      
+    lauradolls.addEventListener("pointerup", function(){
+       ui.addBubble(lauradollsb);
+    });
+
+    spiegelbeeld.addEventListener("pointerup", function(){
+       ui.addBubble(spiegelbeeldb);
+    });
+
+    winivintage.addEventListener("pointerup", function(){
+       ui.addBubble(winivintageb);
+    });
+
+    episode.addEventListener("pointerup", function(){
+       ui.addBubble(episodeb);
+    });
+
+    ilovevintage.addEventListener("pointerup", function(){
+       ui.addBubble(ilovevintageb);
+    });
+
+    waterloo.addEventListener("pointerup", function(){
+       ui.addBubble(waterloob);
+    });
+  
+    // ui.addBubble(spiegelbeeldb);
+    // ui.addBubble(winivintageb);
+    // ui.addBubble(episodeb);
+    // ui.addBubble(waterloob);
+    // ui.addBubble(ilovevintageb);
+
+
+    // var dataPoints1 = [];
+    // dataPoints1.push(new H.clustering.DataPoint(52.370310, 4.886141));
+    // dataPoints1.push(new H.clustering.DataPoint(52.368937, 4.885373));
+    // dataPoints1.push(new H.clustering.DataPoint(52.370305, 4.884331));
+
+
+    // var clusteredDataProvider = new H.clustering.Provider(dataPoints1);
+
+    // // Create a layer that includes the data provider and its data points: 
+    // var layer = new H.map.layer.ObjectLayer(clusteredDataProvider);
+
+    // // Add the layer to the map:
+    // map.addLayer(layer);
+
+    map.setCenter(center);
+    
+    
+    
+    
   </script>
 
 </body>
 
 </html>
+
+
+
+
